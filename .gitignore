@@ -4,3 +4,7 @@ data
 models
 *.swp
 *.p
+input
+__pycache__
+*.csv
+resnet*.py
