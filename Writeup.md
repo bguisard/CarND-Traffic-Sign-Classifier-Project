@@ -70,6 +70,25 @@ I thought that the problem that was provided was a very interesting opportunity 
 
 #### Benchmark: LeNet-5 (Validation Accuracy: 96%)
 
+This is how we implemented our LeNet-5 model:
+
+- Input(32, 32, 3 or 32, 32, 1 - depending on whether you are passing on color or gray scale images)
+
+- Convolution (Kernel: 5x5, Depth: 6, Stride: 1)
+- Relu
+- Maxpool (Kernel: 2x2, Stride: 2)
+
+
+- Convolution (Kernel: 5x5, Depth: 16, Stride: 1)
+- Relu
+- Maxpool (Kernel: 2x2, Stride: 2)
+
+- Flatten
+- Fully Connected layer (Size: 120, activation: Relu)
+- Fully Connected layer (Size: 84, activation: Relu)
+- Softmax (n_classes = 43)
+
+
 Training parameters:
 - Optimizer: Adam
 - Learning rate: 1e-3
@@ -140,12 +159,46 @@ To showcase the power of recently developed tools I put together a model that ha
 
 After each block the size of the input is halved, but the depth of the convolutions double.
 
-After the 3rd block i have a small stem to flatten and classify the images:
+Here is the full model architecture:
+
+- Input(32, 32, 3 or 32, 32, 1 - depending on whether you are passing on color or gray scale images)
+
+
+- Convolution (Kernel: 3x3, Depth: 32, Stride: 1)
+- Batch Normalization
+- Relu
+- Convolution (Kernel: 3x3, Depth: 32, Stride: 1)
+- Batch Normalization
+- Relu
+- Convolution (Kernel: 2x2, Depth: 32, Stride: 2)
+- Dropout (p: 0.2)
+
+
+- Convolution (Kernel: 3x3, Depth: 64, Stride: 1)
+- Batch Normalization
+- Relu
+- Convolution (Kernel: 3x3, Depth: 64, Stride: 1)
+- Batch Normalization
+- Relu
+- Convolution (Kernel: 2x2, Depth: 64, Stride: 2)
+- Dropout (p: 0.2)
+
+
+- Convolution (Kernel: 3x3, Depth: 128, Stride: 1)
+- Batch Normalization
+- Relu
+- Convolution (Kernel: 3x3, Depth: 128Stride: 1)
+- Batch Normalization
+- Relu
+- Convolution (Kernel: 2x2, Depth: 128Stride: 2)
+- Dropout (p: 0.2)
+
 
 - Flatten
-- Fully Connected layer (Size: 512)
+- Fully Connected layer (Size: 512, activation: Relu)
 - Dropout (p: 0.5)
-- Softmax
+- Softmax (n_classes = 43)
+
 
 I believe this is a good selection of most of the important techniques that have been adopted by the industry.
 
@@ -224,7 +277,7 @@ The image below shows the 5 new images along with their preprocessed versions.
 
 <img src="images/new_test.png" width="480" alt="Combined Image" />
 
-As expected we didn't do too well on this limited sample, only 60% accuracy. But that's fine, they were chosen to be difficult for the model to classify. The idea of this sample was to give us more information about where are are getting things wrong.
+As expected we didn't do too well on this limited sample, only 60% accuracy, compared with a 97.9% on the test set. But that's fine, they were chosen to be difficult for the model to classify. The idea of this sample was to give us more information about where are are getting things wrong.
 
 Looking at the top 5 probabilities will show us how certain, or uncertain, the model was on these two misclassification cases.
 
