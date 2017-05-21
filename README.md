@@ -164,41 +164,44 @@ Here is the full model architecture:
 - Input(32, 32, 3 or 32, 32, 1 - depending on whether you are passing on color or gray scale images)
 
 
-- Convolution (Kernel: 3x3, Depth: 32, Stride: 1)
+- Conv_1a(Kernel: 3x3, Depth: 32, Stride: 1)
 - Batch Normalization
 - Relu
-- Convolution (Kernel: 3x3, Depth: 32, Stride: 1)
+- Conv_1b(Kernel: 3x3, Depth: 32, Stride: 1)
 - Batch Normalization
 - Relu
-- Convolution (Kernel: 2x2, Depth: 32, Stride: 2)
-- Dropout (p: 0.2)
+- Conv_pool_1(Kernel: 2x2, Depth: 32, Stride: 2)
+- Dropout_1 (p: 0.2)
 
 
-- Convolution (Kernel: 3x3, Depth: 64, Stride: 1)
+- Conv_2a (Kernel: 3x3, Depth: 64, Stride: 1)
 - Batch Normalization
 - Relu
-- Convolution (Kernel: 3x3, Depth: 64, Stride: 1)
+- Conv_2b (Kernel: 3x3, Depth: 64, Stride: 1)
 - Batch Normalization
 - Relu
-- Convolution (Kernel: 2x2, Depth: 64, Stride: 2)
-- Dropout (p: 0.2)
+- Convo_pool_2 (Kernel: 2x2, Depth: 64, Stride: 2)
+- Dropout_2 (p: 0.2)
 
 
-- Convolution (Kernel: 3x3, Depth: 128, Stride: 1)
+- Conv_3a (Kernel: 3x3, Depth: 128, Stride: 1)
 - Batch Normalization
 - Relu
-- Convolution (Kernel: 3x3, Depth: 128Stride: 1)
+- Conv_3b (Kernel: 3x3, Depth: 128Stride: 1)
 - Batch Normalization
 - Relu
-- Convolution (Kernel: 2x2, Depth: 128Stride: 2)
-- Dropout (p: 0.2)
+- Conv_pool_3 (Kernel: 2x2, Depth: 128Stride: 2)
+- Dropout_3 (p: 0.2)
 
 
 - Flatten
-- Fully Connected layer (Size: 512, activation: Relu)
-- Dropout (p: 0.5)
+- FullyConnected_6 (Dense, Size: 512, activation: Relu)
+- Dropout_7 (p: 0.5)
 - Softmax (n_classes = 43)
 
+
+
+<img src="modern_cnn.png" width="200" alt="Combined Image" />
 
 I believe this is a good selection of most of the important techniques that have been adopted by the industry.
 
